@@ -5,4 +5,4 @@
  * @author adanp
  *
  */
-package com.accounts.controllers.ui;
+package com.accounts.app.controllers.ui;
