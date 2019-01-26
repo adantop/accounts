@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.accounts.app.services.IAccountService;
+import com.accounts.app.services.IRestService;
 import com.accounts.app.models.entities.Account;
 
 @Controller
@@ -19,6 +20,9 @@ public class UIController {
 
 	@Autowired
 	private IAccountService accountSvc;
+	
+	@Autowired
+	private IRestService restSvc;
 
 	@RequestMapping("/")
 	public String index() {
@@ -75,5 +79,14 @@ public class UIController {
 			accountSvc.delete(id);
 		}
 		return "redirect:/accounts";
+	}
+	
+	@GetMapping("/test")
+	public String test(Model model) {
+		
+		Account account = restSvc.findOne();
+		model.addAttribute("account", account);
+		
+		return "/account_details";
 	}
 }
