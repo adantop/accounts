@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Accounts</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" th:href="@{/}" href="#">Accounts</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/}"
+					href="#">Home</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/accounts}" href="#">Accounts</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/api}"
+					href="#">API</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<p>&nbsp;</p>
+		<h1 class="display-4">Accounts <a href="#" th:href="@{/h2-console}" class="badge badge-secondary">H2 Console</a></h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Gmail ID</th>
+					<th scope="col">DOB</th>
+					<th scope="col">Admin</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="account: ${accounts}">
+					<th scope="row" th:text="${account.id}">1</th>
+					<td th:text="${account.givenName}">John</td>
+					<td th:text="${account.lastName}">Doe</td>
+					<td th:text="${account.gAccount} + '@gmail.com'">john.doe@gmail.com</td>
+					<td th:text="${account.dob}">12/03/1990</td>
+					<td><a class="btn btn-primary" href="/edit/1" th:href="@{/edit/} + ${account.id}" th:text="'Edit'">Edit</a>&nbsp;<a class="btn btn-danger" href="/delete/1" th:href="@{/delete/} + ${account.id}" th:text="'Delete'">Delete</a></td>
+				</tr>
+				<tr>
+					<td colspan="6"><a class="btn btn-success" href="/new" th:href="@{/new}" th:text="'Add'">Add</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container">
+		<hr />
+		<footer>
+			<p>&copy; Company 2019</p>
+		</footer>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>

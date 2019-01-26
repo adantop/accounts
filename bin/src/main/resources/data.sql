@@ -1,0 +1,3 @@
+INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (1, 'John', 'Doe', 'john.doe', '1990-03-12', '2019-01-20 00:00:00-06', '2019-01-20 00:00:00-06');
+INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (2, 'Joanne', 'Dua', 'joanne.dua', '1992-07-09', '2019-01-18 00:00:00-06', '2019-01-20 00:00:00-06');
+INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (3, 'Pancho', 'Gomez', 'gomez.pancho', '1992-07-09', '2019-01-18 05:00:00-06', '2019-01-20 00:00:00-06');
