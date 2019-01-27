@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accounts.app.models.entities.Account;
-import com.accounts.app.repositories.IAccountDao;
+import com.accounts.app.entities.Account;
+import com.accounts.app.repositories.IAccountRepository;
 
 // TODO Add handling for update and create timestamps
 @Service
 public class AccountServiceImpl implements IAccountService {
 	
 	@Autowired
-	private IAccountDao accountDao;
+	private IAccountRepository accountDao;
 	
 	@Override
 	@Transactional(readOnly=true)

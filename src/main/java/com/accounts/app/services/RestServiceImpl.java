@@ -9,7 +9,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.accounts.app.models.entities.Account;
+import com.accounts.app.entities.Account;
 
 /**
  * @author adanp

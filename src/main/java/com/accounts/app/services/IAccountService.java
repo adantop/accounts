@@ -3,7 +3,7 @@ package com.accounts.app.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.accounts.app.models.entities.Account;
+import com.accounts.app.entities.Account;
 
 public interface IAccountService {
 	

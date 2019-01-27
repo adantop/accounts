@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.accounts.app.entities.Account;
 import com.accounts.app.services.IAccountService;
 import com.accounts.app.services.IRestService;
-import com.accounts.app.models.entities.Account;
 
 @Controller
 public class UIController {
