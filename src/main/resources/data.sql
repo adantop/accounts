@@ -1,3 +1,10 @@
 INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (1, 'John', 'Doe', 'john.doe', '1990-03-12', '2019-01-20 00:00:00-06', '2019-01-20 00:00:00-06');
 INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (2, 'Joanne', 'Dua', 'joanne.dua', '1992-07-09', '2019-01-18 00:00:00-06', '2019-01-20 00:00:00-06');
 INSERT INTO accounts (id, name, lastname, gaccount, DOB, create_timestamp, update_timestamp) VALUES (3, 'Pancho', 'Gomez', 'gomez.pancho', '1992-07-09', '2019-01-18 05:00:00-06', '2019-01-20 00:00:00-06');
+INSERT INTO roles (id, name) VALUES (1, 'READ');
+INSERT INTO roles (id, name) VALUES (2, 'WRITE');
+INSERT INTO users (id, active, password, username) VALUES (1, TRUE, '$2a$10$7NQbdx3AvWIK8Z/7aJHgouQxvlhSksdtN4kvCZIQJifZ53RbmKos.','admin');
+INSERT INTO users (id, active, password, username) VALUES (2, TRUE, '$2a$10$7NQbdx3AvWIK8Z/7aJHgouQxvlhSksdtN4kvCZIQJifZ53RbmKos.','user');
+INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1);
+INSERT INTO users_roles (user_id, roles_id) VALUES (1, 2);
+INSERT INTO users_roles (user_id, roles_id) VALUES (2, 1);

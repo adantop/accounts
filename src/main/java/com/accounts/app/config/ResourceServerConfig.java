@@ -18,7 +18,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .disable()
                 .and()
             .authorizeRequests()
-                .antMatchers("/","/home", "/index", "/index.html", "/index.jsp", "/accounts").permitAll()
+                .antMatchers("/","/home", "/index", "/index.html", "/index.jsp", "/accounts", "/h2-console/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/account/**").hasRole("READ")
                 .antMatchers(HttpMethod.GET, "/test").hasRole("READ")
                 .antMatchers(HttpMethod.GET, "/test").hasRole("READ")

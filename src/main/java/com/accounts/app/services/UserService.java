@@ -1,10 +1,11 @@
-package com.accounts.app.repositories;
+package com.accounts.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.accounts.app.entities.User;
+import com.accounts.app.repositories.IUserRepository;
 
 @Service
 public class UserService {
