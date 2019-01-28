@@ -12,7 +12,7 @@ import com.accounts.app.repositories.IAccountRepository;
 
 // TODO Add handling for update and create timestamps
 @Service
-public class AccountServiceImpl implements IAccountService {
+public class AccountService implements IAccountService {
 	
 	@Autowired
 	private IAccountRepository accountDao;

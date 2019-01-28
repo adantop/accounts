@@ -32,7 +32,6 @@ public class RestServiceImpl implements IRestService {
 
 	@Override
 	public List<Account> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

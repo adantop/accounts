@@ -12,8 +12,6 @@ import com.accounts.app.entities.Account;
  *
  */
 public interface IRestService {
-	
-	//public List<Account> findAll();
 
 	public Account findOne();
 
