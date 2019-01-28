@@ -89,4 +89,10 @@ public class UIController {
 		
 		return "/account_details";
 	}
+	
+	@GetMapping("/api")
+	public String swagger() {
+		
+		return "redirect:/swagger-ui.html";
+	}
 }

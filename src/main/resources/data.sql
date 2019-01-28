@@ -5,6 +5,7 @@ INSERT INTO roles (id, name) VALUES (1, 'READ');
 INSERT INTO roles (id, name) VALUES (2, 'WRITE');
 INSERT INTO users (id, enabled, password, username) VALUES (1, TRUE, '$2a$10$7NQbdx3AvWIK8Z/7aJHgouQxvlhSksdtN4kvCZIQJifZ53RbmKos.','admin');
 INSERT INTO users (id, enabled, password, username) VALUES (2, TRUE, '$2a$10$7NQbdx3AvWIK8Z/7aJHgouQxvlhSksdtN4kvCZIQJifZ53RbmKos.','user');
+INSERT INTO users (id, enabled, password, username) VALUES (3, TRUE, '$2a$10$3g.bcRtH/0fsimnsGE8.6ONLhRoicV7INXP/TgXu8RB6i0gtU0Ple', 'adantop');
 INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1);
 INSERT INTO users_roles (user_id, roles_id) VALUES (1, 2);
 INSERT INTO users_roles (user_id, roles_id) VALUES (2, 1);

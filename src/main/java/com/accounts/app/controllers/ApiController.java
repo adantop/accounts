@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,11 +17,19 @@ import com.accounts.app.entities.Account;
 import com.accounts.app.services.IAccountService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 public class ApiController {
 
 	@Autowired
 	private IAccountService accountSvc;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@RequestMapping(path = "generate_password/{password}", method = RequestMethod.GET)
+	public String genPassword(@PathVariable(value = "password") String passwd) {
+		return passwordEncoder.encode(passwd);
+	}
 
 	@RequestMapping(path = "account/", method = RequestMethod.GET)
 	public List<Account> getAll() {

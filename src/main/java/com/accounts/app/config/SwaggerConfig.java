@@ -2,6 +2,7 @@ package com.accounts.app.config;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,14 +27,28 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	
+	private String resourceId = "spring-oauth";
+	
+	@Value("${config.oauth2.clientID}")
+    private String client;
+	
+	@Value("${config.oauth2.clientSecret}")
+    private String secret;
+	
+	@Value("${config.oauth2.accessTokenUri}")
+	private String accessTokenUri;
+	
+	@Value("${config.oauth2.userAuthorizationUri}")
+	private String userAuthUri;
+	
 	private SecurityScheme securityScheme() {
 	    GrantType grantType = new AuthorizationCodeGrantBuilder()
-	        .tokenEndpoint(new TokenEndpoint("http://localhost/oauth/token", "access_token"))
+	        .tokenEndpoint(new TokenEndpoint(accessTokenUri, "access_token"))
 	        .tokenRequestEndpoint(
-	          new TokenRequestEndpoint("http://localhost/oauth/token", "trusted-client", "admin"))
+	          new TokenRequestEndpoint(userAuthUri, client, secret))
 	        .build();
 	 
-	    SecurityScheme oauth = new OAuthBuilder().name("spring_oauth")
+	    SecurityScheme oauth = new OAuthBuilder().name(resourceId)
 	        .grantTypes(Arrays.asList(grantType))
 	        .scopes(Arrays.asList(scopes()))
 	        .build();
@@ -51,23 +66,38 @@ public class SwaggerConfig {
 	private SecurityContext securityContext() {
 	    return SecurityContext.builder()
 	      .securityReferences(
-	        Arrays.asList(new SecurityReference("spring_oauth", scopes())))
-	      .forPaths(PathSelectors.regex("/foos.*"))
+	        Arrays.asList(new SecurityReference(resourceId, scopes())))
+	      .forPaths(PathSelectors.regex("/api/account/*"))
 	      .build();
 	}
 
 	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.ant("/api/account/*")).build().securitySchemes(Arrays.asList(securityScheme()))
-				.securityContexts(Arrays.asList(securityContext()));
+	public Docket accountApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+					.groupName("Accounts API")
+					.select()
+					.apis(RequestHandlerSelectors.any())
+					.paths(PathSelectors.ant("/api/account/*"))
+					.build()
+						.securitySchemes(Arrays.asList(securityScheme()))
+						.securityContexts(Arrays.asList(securityContext()));
+	}
+	
+	@Bean
+	public Docket passwordApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+					.groupName("Password Generator")
+					.select()
+					.apis(RequestHandlerSelectors.any())
+					.paths(PathSelectors.ant("/api/generate_password/*"))
+					.build();
 	}
 	
 	@Bean
 	public SecurityConfiguration security() {
 		return SecurityConfigurationBuilder.builder()
-				.clientId("trusted-client")
-				.clientSecret("admin")
+				.clientId(client)
+				.clientSecret(secret)
 				.scopeSeparator(" ")
 				.useBasicAuthenticationWithAccessCodeGrant(true)
 				.build();
