@@ -12,7 +12,11 @@ import org.springframework.web.client.RestTemplate;
 import com.accounts.app.entities.Account;
 
 /**
- * @author adanp
+ * This service must be utilized by the UI Controllers
+ * to access the account information intead of using
+ * the Account Service
+ * 
+ * @author adantop
  *
  */
 @Service

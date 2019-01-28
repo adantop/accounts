@@ -9,6 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class AccountsApplication {
 	
+	/**
+	 * PasswordEncoder utilized for the UserDetailImpl (used default)
+	 * @return BCryptPasswordEncoder
+	 */
 	@Bean
     public PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();

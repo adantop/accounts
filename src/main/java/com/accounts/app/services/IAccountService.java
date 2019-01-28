@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.accounts.app.entities.Account;
 
+// Base account Service
 public interface IAccountService {
 	
 	public List<Account> findAll ();

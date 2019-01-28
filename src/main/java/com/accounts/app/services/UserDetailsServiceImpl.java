@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.accounts.app.repositories.IUserRepository;
 
+/**
+ * Service to manage the UserDetails required by for the 
+ * security implementation
+ * 
+ * @author adanp
+ *
+ */
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 

@@ -14,7 +14,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 
 /**
- * @author adanp
+ * The role of the Authorization Server is to middle betweent the 
+ * resource and the client, the client must communicate to the Authorization Server
+ * to obtain the authentification, only after this the client will be able
+ * to access the resources
+ * @author adantop
  *
  */
 @Configuration

@@ -10,7 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accounts.app.entities.Account;
 import com.accounts.app.repositories.IAccountRepository;
 
-// TODO Add handling for update and create timestamps
+/**
+ * The Account Service is the class that manges the interactions
+ * between the controllers and the Account Repository, sould be
+ * only accessible for the API
+ * 
+ * @author adantop
+ * TODO Add handling for update and create timestamps
+ */
 @Service
 public class AccountService implements IAccountService {
 	

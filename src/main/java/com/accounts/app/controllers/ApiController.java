@@ -16,16 +16,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accounts.app.entities.Account;
 import com.accounts.app.services.IAccountService;
 
+/**
+ * The API Controller to manage the REST Services by mapping the requests
+ * 
+ * @author adanp
+ *
+ */
 @RestController
 @RequestMapping("/api/")
 public class ApiController {
 
+	/**
+	 * Linking to the Account Service to retrive the data
+	 */
 	@Autowired
 	private IAccountService accountSvc;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	/**
+	 * REST Service to generate the encoded string for the password
+	 * 
+	 * @param passwd
+	 * @return String encodedPassword
+	 */
 	@RequestMapping(path = "generate_password/{password}", method = RequestMethod.GET)
 	public String genPassword(@PathVariable(value = "password") String passwd) {
 		return passwordEncoder.encode(passwd);
@@ -37,7 +52,11 @@ public class ApiController {
 
 		return accounts;
 	}
-
+	
+	/**
+	 * POST HTTP Request are utilized for CREATE operations
+	 * @param account
+	 */
 	@RequestMapping(path = "account/", method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void add(@RequestBody Optional<Account> account) {
@@ -47,6 +66,11 @@ public class ApiController {
 		accountSvc.save(account.get());
 	}
 	
+	/**
+	 * PUT HTTP Request are utilized for UPDATE operations,
+	 * both PUT and POST returns CREATED
+	 * @param account
+	 */
 	@RequestMapping(path = "account/", method = RequestMethod.PUT)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void save(@RequestBody Optional<Account> account) {

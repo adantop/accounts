@@ -8,6 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Roles to filter the access to the services according
+ * to the required activity... roles are not being
+ * considered as of now, the adjustment in the Security
+ * configuration broke it :(
+ * 
+ * @author adantop
+ *
+ */
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {

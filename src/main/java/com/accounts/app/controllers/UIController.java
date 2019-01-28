@@ -15,6 +15,15 @@ import com.accounts.app.entities.Account;
 import com.accounts.app.services.IAccountService;
 import com.accounts.app.services.IRestService;
 
+/**
+ * The controller for the front page and a couple of extra websites to easily
+ * view the information for the accounts. This is not complete, the controllers
+ * should be connecting to the RestService (use the API) instead of going directly
+ * to the AccountService
+ * 
+ * @author adantop
+ *
+ */
 @Controller
 public class UIController {
 
@@ -81,6 +90,12 @@ public class UIController {
 		return "redirect:/accounts";
 	}
 	
+	/**
+	 * Testing method to implement the Rest Service
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/test")
 	public String test(Model model) {
 		

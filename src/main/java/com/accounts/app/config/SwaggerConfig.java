@@ -23,10 +23,19 @@ import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Configuration for Swagger UI with OAuth2 security
+ * 
+ * @author adantop
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 	
+	/**
+	 * Configured to access the default Client Details Service
+	 */
 	private String resourceId = "spring-oauth";
 	
 	@Value("${config.oauth2.clientID}")
@@ -40,6 +49,33 @@ public class SwaggerConfig {
 	
 	@Value("${config.oauth2.userAuthorizationUri}")
 	private String userAuthUri;
+	
+	/**
+	 * Main Bean for the application, it shows the REST services
+	 * available for the Accounts, it is using security
+	 * @return
+	 */
+	@Bean
+	public Docket accountApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+					.groupName("Accounts API")
+					.select()
+					.apis(RequestHandlerSelectors.any())
+					.paths(PathSelectors.ant("/api/account/*"))
+					.build()
+						.securitySchemes(Arrays.asList(securityScheme()))
+						.securityContexts(Arrays.asList(securityContext()));
+	}
+	
+	@Bean
+	public Docket passwordApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+					.groupName("Password Generator")
+					.select()
+					.apis(RequestHandlerSelectors.any())
+					.paths(PathSelectors.ant("/api/generate_password/*"))
+					.build();
+	}
 	
 	private SecurityScheme securityScheme() {
 	    GrantType grantType = new AuthorizationCodeGrantBuilder()
@@ -69,28 +105,6 @@ public class SwaggerConfig {
 	        Arrays.asList(new SecurityReference(resourceId, scopes())))
 	      .forPaths(PathSelectors.regex("/api/account/*"))
 	      .build();
-	}
-
-	@Bean
-	public Docket accountApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-					.groupName("Accounts API")
-					.select()
-					.apis(RequestHandlerSelectors.any())
-					.paths(PathSelectors.ant("/api/account/*"))
-					.build()
-						.securitySchemes(Arrays.asList(securityScheme()))
-						.securityContexts(Arrays.asList(securityContext()));
-	}
-	
-	@Bean
-	public Docket passwordApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-					.groupName("Password Generator")
-					.select()
-					.apis(RequestHandlerSelectors.any())
-					.paths(PathSelectors.ant("/api/generate_password/*"))
-					.build();
 	}
 	
 	@Bean

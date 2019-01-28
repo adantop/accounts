@@ -16,6 +16,14 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * User class used to populate the User Repository, it implements
+ * UserDetails since this class is used to feed the Web Security 
+ * configuration
+ * 
+ * @author adantop
+ *
+ */
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {

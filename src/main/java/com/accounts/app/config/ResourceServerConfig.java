@@ -6,6 +6,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
+/**
+ * The Resource Server configuration is useful to add security to the
+ * offered resources, it can map the HttpSecurity according to ant rules
+ * which filter the access to the resources either by authentication or
+ * by the presence of roles
+ * 
+ * @author adantop
+ *
+ */
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
