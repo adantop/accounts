@@ -1,6 +1,7 @@
 package com.accounts.app.entities;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,9 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,17 +29,18 @@ public class User implements Serializable {
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Role> roles;
-	private boolean active;
+	private boolean enabled;
 
 	public User() {
 		super();
 	}
 
-	public User(String username, String password, List<Role> roles, boolean active) {
+	public User(String username, String password, List<Role> roles, boolean enabled) {
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
-		this.active = active;
+		this.enabled = enabled;
+		System.out.println(this.getUsername() +  " " + this.getPassword());
 	}
 
 	public String getUsername() {
@@ -61,13 +66,44 @@ public class User implements Serializable {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
-	public boolean isActive() {
-		return active;
+	
+	public boolean getEnabled () {
+		return this.enabled;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+        return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+
+		return this.enabled;
 	}
 
 }

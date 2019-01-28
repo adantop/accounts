@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.accounts.app.repositories.IUserRepository;
 
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private IUserRepository repo;
-
-    @Override
+	
+	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
     	return repo
@@ -25,10 +25,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     				.map(u -> new org.springframework.security.core.userdetails.User(
     						u.getUsername(),
     		                u.getPassword(),
-    		                u.isActive(),
-    		                u.isActive(),
-    		                u.isActive(),
-    		                u.isActive(),
+    		                u.isEnabled(),
+    		                u.isEnabled(),
+    		                u.isEnabled(),
+    		                u.isEnabled(),
     		                AuthorityUtils.createAuthorityList(
     		                        u.getRoles()
     		                                .stream()

@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "config.oauth2.privateKey",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.privateKey'"
+  },
+  {
+    "name": "config.oauth2.publicKey",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.publicKey'"
+  },
+  {
+    "name": "config.oauth2.tokenTimeout",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.tokenTimeout'"
+  },
+  {
+    "name": "config.oauth2.resource.id",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.resource.id'"
+  },
+  {
+    "name": "config.oauth2.clientID",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.clientID'"
+  },
+  {
+    "name": "config.oauth2.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.clientSecret'"
+  },
+  {
+    "name": "config.oauth2.resourceURI",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.resourceURI'"
+  },
+  {
+    "name": "config.oauth2.userAuthorizationUri",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.userAuthorizationUri'"
+  },
+  {
+    "name": "config.oauth2.accessTokenUri",
+    "type": "java.lang.String",
+    "description": "A description for 'config.oauth2.accessTokenUri'"
+  }
+]}

@@ -1,5 +1,6 @@
 package com.accounts.app.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,22 +11,32 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+	@Value("${config.oauth2.publicKey}")
+    private String publicKey;
+
+    @Value("${config.oauth2.privateKey}")
+    private String privateKey;
+
+    @Value("${config.oauth2.resource.id}")
+    private String resourceId;
+    
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-            .headers()
-                .frameOptions()
-                .disable()
+	        .csrf().disable()
+	        .authorizeRequests()
+		        .antMatchers(HttpMethod.OPTIONS).permitAll()
+		        .antMatchers("/","/home", "/index", "/index.html", "/index.jsp", "/accounts", "/h2-console/**").permitAll()
+		        .antMatchers("/oauth/**", "/login").permitAll().anyRequest().authenticated()
+                .antMatchers(HttpMethod.GET, "/api/account/**").authenticated()//.hasRole("READ")
+                .antMatchers(HttpMethod.GET, "/test").authenticated()//.hasRole("READ")
+                .antMatchers(HttpMethod.GET, "/test").authenticated()//.hasRole("READ")
+                .antMatchers("/delete/**", "/save", "/new").authenticated()//.hasRole("WRITE")
+                .antMatchers(HttpMethod.POST).authenticated()//.hasRole("WRITE")
+                .antMatchers(HttpMethod.PUT).authenticated()//.hasRole("WRITE")
+                .antMatchers(HttpMethod.DELETE).authenticated()//.hasRole("WRITE")
                 .and()
-            .authorizeRequests()
-                .antMatchers("/","/home", "/index", "/index.html", "/index.jsp", "/accounts", "/h2-console/**").permitAll()
-                .antMatchers("/delete/**","/save","/new").hasAnyRole("WRITE")
-                .antMatchers(HttpMethod.GET, "/api/account/**").hasRole("READ")
-                .antMatchers(HttpMethod.GET, "/test").hasRole("READ")
-                .antMatchers(HttpMethod.GET, "/test").hasRole("READ")
-                .antMatchers(HttpMethod.POST).hasRole("WRITE")
-                .antMatchers(HttpMethod.PUT).hasRole("WRITE")
-                .antMatchers(HttpMethod.DELETE).hasRole("WRITE");
+                .formLogin().permitAll();
         /**
          * GET    /api/account/   list accounts
          * GET    /api/account/** view one account
@@ -39,6 +50,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
          * GET    /test           
          */
     }
-
 
 }
